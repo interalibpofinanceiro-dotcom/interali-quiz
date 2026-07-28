@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Saúde Financeira Express — Interali</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 480px;
+    margin: 24px auto;
+    color: #1f2d2a;
+    padding: 0 16px 60px;
+    background: #ffffff;
+  }
+  h2 { color: #154a41; text-align: center; }
+  p.intro { text-align: center; color: #556; }
+  p.pergunta { margin: 22px 0 8px; font-weight: bold; }
+  label {
+    display: block;
+    margin: 6px 0;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  label:active, input:checked + span { background: #eef5f3; }
+  input[type="radio"] { margin-right: 8px; }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+  button {
+    display: block;
+    width: 100%;
+    background: #154a41;
+    color: #ffffff;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 24px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h2>Diagnóstico de Saúde Financeira Express</h2>
+  <p class="intro">Responda as 8 perguntas abaixo pra ver seu resultado na hora.</p>
+
+  <form id="quizForm" method="GET" action="https://script.google.com/macros/s/AKfycbziPkXGfBMUMOeHjoM7dh9wd9masvNxQye0IwMFeP57Fgg7t4pyiw_PfoCDSpIWAC4N/exec">
+    <input type="hidden" name="action" value="diagnostico_link">
+    <input type="hidden" name="social" id="socialField" value="">
+
+    <p class="pergunta">1. Como é feita a divisão entre o dinheiro da empresa e o seu dinheiro pessoal?</p>
+    <label><input type="radio" name="r1" value="1" required> Misturo as contas. Pago contas pessoais pela conta da empresa ou vice-versa.</label>
+    <label><input type="radio" name="r1" value="2"> Tento separar, mas no fim do mês acabo fazendo transferências para cobrir despesas pessoais.</label>
+    <label><input type="radio" name="r1" value="3"> Totalmente separadas. Tenho Pró-Labore fixo definido e a conta PJ é 100% exclusiva do negócio.</label>
+
+    <p class="pergunta">2. Com que frequência você registra e analisa as entradas e saídas de dinheiro?</p>
+    <label><input type="radio" name="r2" value="1" required> Não registro tudo com frequência / Só olho o saldo do banco para saber se tem dinheiro.</label>
+    <label><input type="radio" name="r2" value="2"> Anoto em caderno ou planilha simples, mas fico alguns dias sem atualizar.</label>
+    <label><input type="radio" name="r2" value="3"> Registro 100% das movimentações diariamente em sistema/planilha e concilio com o extrato bancário.</label>
+
+    <p class="pergunta">3. Você consegue prever o saldo de caixa do seu negócio para os próximos 30 a 90 dias?</p>
+    <label><input type="radio" name="r3" value="1" required> Não. Vivo no "aperto do mês" e só sei o que tenho no dia.</label>
+    <label><input type="radio" name="r3" value="2"> Tenho uma ideia visual das contas a pagar/receber da semana, mas sem projeção formal.</label>
+    <label><input type="radio" name="r3" value="3"> Sim, tenho um Fluxo de Caixa Projetado que me mostra a sobra ou falta de dinheiro com meses de antecedência.</label>
+
+    <p class="pergunta">4. Como você sabe se a sua empresa deu LUCRO ou PREJUÍZO no mês passado?</p>
+    <label><input type="radio" name="r4" value="1" required> Olho o saldo da conta corrente no final do mês.</label>
+    <label><input type="radio" name="r4" value="2"> Calculo aproximado subtraindo o total vendido pelas contas pagas do mês.</label>
+    <label><input type="radio" name="r4" value="3"> Acompanho mensalmente uma DRE (Demonstração do Resultado do Exercício) pelo regime de competência.</label>
+
+    <p class="pergunta">5. Como é calculado o preço dos seus produtos ou serviços?</p>
+    <label><input type="radio" name="r5" value="1" required> Copio o preço dos concorrentes ou coloco uma margem "de cabeça" (ex: multiplico por 2).</label>
+    <label><input type="radio" name="r5" value="2"> Somo os custos diretos e coloco uma margem, mas não considero os custos fixos rateados perfeitamente.</label>
+    <label><input type="radio" name="r5" value="3"> Calculo com base na estrutura técnica de custos (fixos, variáveis, impostos e margem de lucro desejada).</label>
+
+    <p class="pergunta">6. Se as vendas caírem a zero hoje, por quanto tempo sua empresa honra os custos fixos?</p>
+    <label><input type="radio" name="r6" value="1" required> Menos de 15 dias / Dependo do faturamento diário para pagar as contas da semana.</label>
+    <label><input type="radio" name="r6" value="2"> Entre 1 e 2 meses de custos fixos cobertos.</label>
+    <label><input type="radio" name="r6" value="3"> Tenho uma Reserva de Emergência de 3 a 6 meses de custos fixos guardada.</label>
+
+    <p class="pergunta">7. Qual o nível de atraso de pagamentos dos seus clientes e como você cobra?</p>
+    <label><input type="radio" name="r7" value="1" required> Tenho muitos calotes/atrasos e não tenho rotina formal de cobrança.</label>
+    <label><input type="radio" name="r7" value="2"> Cobro de forma manual pelo WhatsApp quando lembro ou percebo o atraso.</label>
+    <label><input type="radio" name="r7" value="3"> Cobro com régua automatizada/estruturada antes e depois do vencimento (inadimplência sob controle).</label>
+
+    <p class="pergunta">8. Com que frequência você senta para analisar indicadores (Margem de Lucro, Ponto de Equilíbrio, ROI)?</p>
+    <label><input type="radio" name="r8" value="1" required> Nunca analiso indicadores / Não sei o que é Ponto de Equilíbrio.</label>
+    <label><input type="radio" name="r8" value="2"> Vejo apenas o faturamento bruto no final do mês.</label>
+    <label><input type="radio" name="r8" value="3"> Reunião mensal de controladoria para analisar Margem, Ponto de Equilíbrio e Indicadores-Chave.</label>
+
+    <p class="pergunta">Seu nome (opcional):</p>
+    <input type="text" name="contato">
+
+    <button type="submit">Ver meu diagnóstico 🎯</button>
+  </form>
+
+  <script>
+    // Preenche o campo oculto "social" com o usuário do Instagram vindo da
+    // própria URL da página (?social=@fulano), mandado pelo link da DM em
+    // automacoes/instagram-comentario-dm/monitorar_comentarios.py.
+    var params = new URLSearchParams(window.location.search);
+    document.getElementById("socialField").value = params.get("social") || "";
+  </script>
+</body>
+</html>
