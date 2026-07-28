@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -111,6 +112,49 @@
     // automacoes/instagram-comentario-dm/monitorar_comentarios.py.
     var params = new URLSearchParams(window.location.search);
     document.getElementById("socialField").value = params.get("social") || "";
+
+    // Mesmas faixas de automacoes/apps-script-backend.gs.txt
+    // (FAIXAS_DIAGNOSTICO) — espelhado aqui pra calcular e redirecionar pro
+    // WhatsApp direto nesta página, sem passar por nenhuma tela do Apps
+    // Script (que trava/fica em branco no navegador interno do Instagram).
+    // O Apps Script ainda é chamado, só que só em segundo plano (fetch com
+    // no-cors, sem exibir nada), pra registrar o lead na planilha.
+    var FAIXAS = [
+      { min: 8, max: 13, titulo: "Nível Crítico — Modo Sobrevivência" },
+      { min: 14, max: 19, titulo: "Nível Intermediário — Gestão Empírica" },
+      { min: 20, max: 24, titulo: "Nível Avançado — Gestão Estratégica" }
+    ];
+    var WHATSAPP_DESTINO = "5541991995846";
+    var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbziPkXGfBMUMOeHjoM7dh9wd9masvNxQye0IwMFeP57Fgg7t4pyiw_PfoCDSpIWAC4N/exec";
+
+    document.getElementById("quizForm").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var form = ev.target;
+      var dados = new FormData(form);
+
+      var pontuacao = 0;
+      for (var i = 1; i <= 8; i++) {
+        pontuacao += Number(dados.get("r" + i)) || 0;
+      }
+      var faixa = FAIXAS[0];
+      for (var j = 0; j < FAIXAS.length; j++) {
+        if (pontuacao >= FAIXAS[j].min && pontuacao <= FAIXAS[j].max) { faixa = FAIXAS[j]; break; }
+      }
+
+      // Dispara em segundo plano pro Apps Script registrar o lead —
+      // no-cors: não lê a resposta, só garante que a chamada é enviada,
+      // sem depender dela pra continuar (e sem travar em nenhuma tela dele).
+      var url = new URL(APPS_SCRIPT_URL);
+      dados.forEach(function (valor, chave) { url.searchParams.set(chave, valor); });
+      fetch(url.toString(), { method: "GET", mode: "no-cors" }).catch(function () {});
+
+      var mensagem =
+        "Olá! Fiz o Diagnóstico Financeiro Express da Interali.\n\n" +
+        "Minha pontuação: " + pontuacao + "/24\n" +
+        "Resultado: " + faixa.titulo + "\n\n" +
+        "Quero entender melhor esse resultado!";
+      window.location.href = "https://wa.me/" + WHATSAPP_DESTINO + "?text=" + encodeURIComponent(mensagem);
+    });
   </script>
 </body>
 </html>
